@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet author="Me" id="myIDNumber123">
+        <sql>CREATE EXTENSION postgis;</sql>
+        <sql>CREATE TYPE my_enum AS ENUM ('SEDAN','TRUCK')</sql>
+        <createTable tableName="transit">
+
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="actor_pakey"/>
+            </column>
+<!--            <column name="id" type="int"/>-->
+            <column name="plate_num" type="VARCHAR(255)"/>
+            <column name="vehicle_type" type="my_enum"/>
+            <column name="registrator_id" type="BIGINT"/>
+            <column name="registered_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+        </createTable>
+
+        <createTable tableName="registrator">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="actor_pkey"/>
+            </column>
+            <column name="code" type="VARCHAR(255)"/>
+            <column name="location" type="GEOMETRY(POINT)"/>
+        </createTable>
+
+    </changeSet>
+</databaseChangeLog>
