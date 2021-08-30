@@ -74,17 +74,17 @@ class RegistratorController(
         BufferedReader(InputStreamReader(file.inputStream)).use { reader ->
             val regFromCsv: List<Registrator> = CsvToBeanBuilder<CSV>(reader)
                 .withType(CSV::class.java)
-                .withSeparator(',')
                 .withIgnoreLeadingWhiteSpace(true)
                 .build()
                 .parse()
                 .map {
                     Registrator(
-                        it.id,
-                        it.code,
-                        it.location
+                        id = registratorRepository.count() + 1,
+                        code = it.code,
+                        location = GeometryFactory().createPoint(Coordinate(it.locationX, it.locationY))
                     )
                 }
+            println("size ${regFromCsv.count()}")
             registratorRepository.saveAll(regFromCsv)
         }
         return "file-upload-status"
@@ -108,7 +108,7 @@ class RegistratorController(
     @GetMapping("/findAll")
     fun findAll(): MutableIterable<Registrator> {
         registratorRepository.findAll().map {
-            println("${it.id} ${it.location}")
+            println("${it.id} ${it.code}  ${it.location}")
         }
         return registratorRepository.findAll()
     }

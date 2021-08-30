@@ -80,6 +80,8 @@
 			<version>2.2</version>
 		</dependency>
 
+
+
 	</dependencies>
 
 	<build>
@@ -123,6 +125,41 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+
+			<plugin>
+				<artifactId>kotlin-maven-plugin</artifactId>
+				<groupId>org.jetbrains.kotlin</groupId>
+				<version>${kotlin.version}</version>
+
+				<configuration>
+					<compilerPlugins>
+						<plugin>jpa</plugin>
+						<plugin>spring</plugin>
+						<plugin>no-arg</plugin>
+					</compilerPlugins>
+
+					<pluginOptions>
+						<option>no-arg:annotation=com.example.Dtp.NoArgConstructor</option>
+						<!-- Call instance initializers in the synthetic constructor -->
+						<!-- <option>no-arg:invokeInitializers=true</option> -->
+					</pluginOptions>
+				</configuration>
+
+				<dependencies>
+					<dependency>
+						<groupId>org.jetbrains.kotlin</groupId>
+						<artifactId>kotlin-maven-noarg</artifactId>
+						<version>${kotlin.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.jetbrains.kotlin</groupId>
+						<artifactId>kotlin-maven-allopen</artifactId>
+						<version>${kotlin.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
+
 		</plugins>
 	</build>
 	<repositories>
