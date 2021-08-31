@@ -53,7 +53,6 @@ class TransitController(
     ): String {
         transitRepository.save(
             Transit(
-                id = transitRepository.count() + 1,
                 plateNum = plate_num,
                 vehicleType = Transit.VehicleType.TRUCK,
                 registratorId = registrator_id,

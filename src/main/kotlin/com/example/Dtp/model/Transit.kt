@@ -16,7 +16,7 @@ data class Transit(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    val id: Long,
+    val id: Long = 0,
     @Column(name="plate_num")
     val plateNum: String,
     @Type( type = "pgsql_enum" )

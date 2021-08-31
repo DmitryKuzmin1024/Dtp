@@ -8,9 +8,9 @@ import javax.persistence.*
 @Table(name = "registrator")
 data class Registrator(
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    val id: Long,
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long = 0,
     @Column(name="code")
     val code: String,
     @Column(name = "location")
