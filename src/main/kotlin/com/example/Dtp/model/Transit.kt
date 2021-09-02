@@ -11,24 +11,30 @@ import javax.persistence.*
 @TypeDef(
     name = "pgsql_enum",
     typeClass = PostgreSQLEnumType::class
-    )
+)
 data class Transit(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     val id: Long = 0,
-    @Column(name="plate_num")
+    @Column(name = "plate_num")
     val plateNum: String,
-    @Type( type = "pgsql_enum" )
+    @Type(type = "pgsql_enum")
     @Enumerated(EnumType.STRING)
-    @Column(name="vehicle_type")
+    @Column(name = "vehicle_type")
     val vehicleType: VehicleType,
-    @Column(name="registrator_id")
+    @Column(name = "registrator_id")
     val registratorId: Long,
-    @Column(name="registered_date")
+    @Column(name = "registered_date")
     val registeredDate: Date
-
 ) {
+    init {
+        require(validatePlateNum(plateNum)) { "Plate Num format: XXX-XXX" }
+    }
+
+    private fun validatePlateNum(plateNum: String) =
+        plateNum.matches(Regex("[A-Z](\\d{3})([A-Z]{2})"))
+
     enum class VehicleType {
         SEDAN, TRUCK
     }

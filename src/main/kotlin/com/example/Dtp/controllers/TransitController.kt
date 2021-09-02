@@ -22,8 +22,8 @@ class TransitController(
 ) {
     // 1. Получить все регистраторы под которыми был зафиксирован проезд транспортного средства
     // с указанным номером
-    @GetMapping("/registratorsByGRZ")
-    fun findRegistratorsByGRZ(
+    @GetMapping("/registratorsByByPlateNum")
+    fun findRegistratorsByPlateNum(
         @RequestParam("plate_num") plate_num: String,
     ): MutableList<Registrator> {
         val regList: MutableList<Registrator> = mutableListOf()
@@ -64,8 +64,8 @@ class TransitController(
 
     // 4. Получить все ГРЗ зафиксированные указанным регистратором
     // в период времени (дата от - дата до)
-    @GetMapping("/grzByRegistratorDate")
-    fun findGrzByRegistratorAndDate(
+    @GetMapping("/TransitsByRegistratorDate")
+    fun findTransitsByRegistratorAndDate(
         @RequestParam("registrator_id") registrator_id: Long,
         @RequestParam("registered_date_from") @DateTimeFormat(pattern = "yyyy-MM-dd") dateFrom: Date,
         @RequestParam("registered_date_to") @DateTimeFormat(pattern = "yyyy-MM-dd") dateTo: Date

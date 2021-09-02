@@ -20,6 +20,7 @@ class RegistratorController(
     private val registratorRepository: RegistatorRepository,
 ) {
     private val csvLogic = CsvLogic()
+
     // 1. Генерация CSV файла с указанным количеством регистраторов
     // расположенных в рандомных точках
     @GetMapping("/exportCSV")
@@ -47,16 +48,19 @@ class RegistratorController(
 
     @PostMapping("/newRegistrator")
     fun addNewRegistrator(
+        @RequestParam("code") code: String,
+        @RequestParam("locationX") locationX: Double,
+        @RequestParam("locationY") locationY: Double
     ): String {
         val point = GeometryFactory()
-            .createPoint(Coordinate(2.2345678, 3.3456789))
+            .createPoint(Coordinate(locationX, locationY))
         registratorRepository.save(
             Registrator(
-                code = "111",
+                code = code,
                 location = point
             )
         )
-        return "Transit added"
+        return "Registrator added"
     }
 
     @GetMapping("/findAll")
