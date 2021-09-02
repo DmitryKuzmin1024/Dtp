@@ -1,10 +1,12 @@
 package com.example.Dtp.model
 
-import com.fasterxml.jackson.annotation.JsonIgnore
+import com.example.Dtp.CustomJson
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import org.locationtech.jts.geom.Point
 import javax.persistence.*
 
 @Entity
+@JsonSerialize(using = CustomJson::class)
 @Table(name = "registrator")
 data class Registrator(
     @Id
@@ -14,7 +16,6 @@ data class Registrator(
     @Column(name = "code")
     val code: String,
     @Column(name = "location")
-    @JsonIgnore
     val location: Point
 ) {
     init {
