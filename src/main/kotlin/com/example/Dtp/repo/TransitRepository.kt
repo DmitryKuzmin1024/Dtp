@@ -45,8 +45,4 @@ interface TransitRepository : CrudRepository<Transit, Long> {
         dateFrom: Date,
         dateTo: Date
     ): List<Transit>
-
-//
-//    fun findByPlateNum(plateNum: String): MutableIterable<Transit>
-//    fun findByRegistratorId(registratorId: Long): MutableIterable<Transit>
 }
