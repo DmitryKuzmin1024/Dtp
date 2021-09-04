@@ -3,6 +3,7 @@ package com.example.Dtp.controllers
 import com.example.Dtp.CsvLogic
 import com.example.Dtp.repo.RegistatorRepository
 import com.example.Dtp.model.Registrator
+import com.example.Dtp.model.Transit
 import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.GeometryFactory
 import org.springframework.core.io.InputStreamResource

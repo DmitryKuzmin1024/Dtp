@@ -21,8 +21,6 @@ data class Registrator(
     init {
         require(validateCode(code)) { "code format: XXX-XXX" }
     }
-
     private fun validateCode(code: String) =
         code.matches(Regex("(\\d{3})[-](\\d{3})"))
-
 }

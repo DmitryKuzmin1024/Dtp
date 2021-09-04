@@ -29,13 +29,11 @@ data class Transit(
     val registeredDate: Date
 ) {
     init {
-        require(validatePlateNum(plateNum)) { "Plate Num format: XXX-XXX" }
+        require(validatePlateNum(plateNum)) { "Plate Num format: AXXXAA" }
     }
-
-    private fun validatePlateNum(plateNum: String) =
-        plateNum.matches(Regex("[A-Z](\\d{3})([A-Z]{2})"))
-
     enum class VehicleType {
         SEDAN, TRUCK
     }
+    private fun validatePlateNum(plateNum: String) =
+        plateNum.matches(Regex("[A-Z](\\d{3})([A-Z]{2})"))
 }
